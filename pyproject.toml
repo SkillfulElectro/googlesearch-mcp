@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "googlesearch-mcp"
+version = "0.1.0"
+description = "MCP server exposing Google search as a tool, powered by the googlesearch-python library. No API key required."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "googlesearch-mcp contributors" }]
+keywords = ["mcp", "model-context-protocol", "google", "search", "llm", "tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+dependencies = [
+    # MCP SDK: stay on the stable v1.x line (v2 is alpha). The README pins <2.
+    "mcp>=1.27,<2",
+    # The Google search library (scrapes Google, no API key needed).
+    "googlesearch-python>=1.2.4",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+googlesearch-mcp = "googlesearch_mcp.server:main"
+# Backwards-compatible alias retained so existing MCP configs keep working.
+search-mcp = "googlesearch_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/SkillfulElectro/googlesearch-mcp"
+Issues = "https://github.com/SkillfulElectro/googlesearch-mcp/issues"
+Repository = "https://github.com/SkillfulElectro/googlesearch-mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/googlesearch_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
