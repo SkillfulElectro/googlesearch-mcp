@@ -1,5 +1,7 @@
 # googlesearch-mcp
 
+> deprecated , A New tool will emerge !
+
 A [Model Context Protocol](https://modelcontextprotocol.io) server that exposes **Google Search** as a tool.
 
 It uses the [`googlesearch-python`](https://github.com/Nv7-GitHub/googlesearch) library, which scrapes Google directly — **no API key, no billing, no setup**.
